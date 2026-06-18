@@ -23,16 +23,15 @@ export async function POST(req: NextRequest) {
       };
     }
 
-    const paymentIntent = await stripe.paymentIntents.create(
-      paymentIntentParams
-    );
+    const paymentIntent =
+      await stripe.paymentIntents.create(paymentIntentParams);
 
     return NextResponse.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
     console.error("Error creando PaymentIntent:", error);
     return NextResponse.json(
       { error: "No se pudo crear el pago" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

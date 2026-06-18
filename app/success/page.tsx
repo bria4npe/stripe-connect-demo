@@ -4,9 +4,7 @@ export default function SuccessPage() {
   return (
     <div className="max-w-md mx-auto text-center py-16">
       <div className="text-5xl mb-4">✅</div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-2">
-        ¡Pago exitoso!
-      </h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-2">¡Pago exitoso!</h1>
       <p className="text-gray-600 mb-2">
         El pago fue procesado. El vendedor recibirá el 90% automáticamente.
       </p>

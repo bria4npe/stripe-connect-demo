@@ -17,29 +17,34 @@ El archivo `.env.local` ya está configurado con las keys de test. Para el webho
 
 ### Configurar webhook local (opcional)
 
-1. Instala Stripe CLI: https://stripe.com/docs/stripe-cli
+1. Instala Stripe CLI: <https://stripe.com/docs/stripe-cli>
 2. Ejecuta:
+
    ```bash
    stripe login
    stripe listen --forward-to localhost:3000/api/stripe/webhook
    ```
+
 3. Copia el `whsec_...` que aparece y reemplázalo en `.env.local`
 
 ## Flujo de la demo
 
 ### 1. Registrar vendedor
+
 - Ve a `/seller/register`
 - Completa el formulario
 - Stripe redirige al onboarding Express (en test no necesitas datos reales)
 - Vuelves a `/seller/onboarding-complete`
 
 ### 2. Comprar un producto
+
 - Ve a `/products`
 - Elige un producto y haz clic en "Comprar"
 - Usa la tarjeta de prueba: `4242 4242 4242 4242`
 - Fecha: cualquier fecha futura | CVC: cualquier 3 dígitos
 
 ### 3. Ver el dashboard admin
+
 - Ve a `/admin`
 - Verás las cuentas conectadas, transferencias y volumen
 

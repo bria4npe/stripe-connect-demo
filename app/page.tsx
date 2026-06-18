@@ -32,23 +32,30 @@ export default function Home() {
       <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <div className="text-2xl mb-2">🏪</div>
-          <h3 className="font-semibold text-gray-900 mb-1">1. Vendedor se registra</h3>
+          <h3 className="font-semibold text-gray-900 mb-1">
+            1. Vendedor se registra
+          </h3>
           <p className="text-sm text-gray-600">
             Crea una cuenta Connect Express en Stripe con onboarding guiado.
           </p>
         </div>
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <div className="text-2xl mb-2">💳</div>
-          <h3 className="font-semibold text-gray-900 mb-1">2. Comprador paga</h3>
+          <h3 className="font-semibold text-gray-900 mb-1">
+            2. Comprador paga
+          </h3>
           <p className="text-sm text-gray-600">
             El pago se divide: 90% al vendedor, 10% como fee de la plataforma.
           </p>
         </div>
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <div className="text-2xl mb-2">📊</div>
-          <h3 className="font-semibold text-gray-900 mb-1">3. Admin supervisa</h3>
+          <h3 className="font-semibold text-gray-900 mb-1">
+            3. Admin supervisa
+          </h3>
           <p className="text-sm text-gray-600">
-            Ve todas las cuentas conectadas, transferencias y fees en tiempo real.
+            Ve todas las cuentas conectadas, transferencias y fees en tiempo
+            real.
           </p>
         </div>
       </div>

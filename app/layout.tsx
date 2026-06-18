@@ -23,8 +23,17 @@ export default function RootLayout({
               <a href="/products" className="text-gray-600 hover:text-gray-900">
                 Productos
               </a>
-              <a href="/seller/register" className="text-gray-600 hover:text-gray-900">
+              <a
+                href="/seller/register"
+                className="text-gray-600 hover:text-gray-900"
+              >
                 Vender
+              </a>
+              <a
+                href="/seller/dashboard"
+                className="text-gray-600 hover:text-gray-900"
+              >
+                Vendedores
               </a>
               <a href="/admin" className="text-gray-600 hover:text-gray-900">
                 Admin

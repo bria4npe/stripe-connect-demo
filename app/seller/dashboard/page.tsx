@@ -1,5 +1,7 @@
 import { stripe } from "@/lib/stripe";
 
+export const revalidate = 0;
+
 async function getConnectedAccounts() {
   const accounts = await stripe.accounts.list({ limit: 10 });
   return accounts.data;

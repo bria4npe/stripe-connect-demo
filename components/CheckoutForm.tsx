@@ -10,7 +10,7 @@ import {
 } from "@stripe/react-stripe-js";
 
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
 function PaymentForm({
@@ -59,12 +59,12 @@ function PaymentForm({
         disabled={loading || !stripe}
         className="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition disabled:opacity-60"
       >
-        {loading
-          ? "Procesando..."
-          : `Pagar $${(amount / 100).toFixed(2)}`}
+        {loading ? "Procesando..." : `Pagar $${(amount / 100).toFixed(2)}`}
       </button>
       <p className="text-xs text-center text-gray-400">
-        Usa la tarjeta de prueba: <span className="font-mono">4242 4242 4242 4242</span>, cualquier fecha futura y CVC.
+        Usa la tarjeta de prueba:{" "}
+        <span className="font-mono">4242 4242 4242 4242</span>, cualquier fecha
+        futura y CVC.
       </p>
     </form>
   );
@@ -123,10 +123,7 @@ export default function CheckoutForm({
   }
 
   return (
-    <Elements
-      stripe={stripePromise}
-      options={{ clientSecret, locale: "es" }}
-    >
+    <Elements stripe={stripePromise} options={{ clientSecret, locale: "es" }}>
       <PaymentForm productName={productName} amount={amount} />
     </Elements>
   );
