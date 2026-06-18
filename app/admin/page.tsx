@@ -23,7 +23,7 @@ async function getDashboardData() {
         "data.balance_transaction",
       ],
     }),
-    stripe.paymentIntents.list({ limit: 50 }),
+    stripe.paymentIntents.list({ limit: 50, expand: ["data.transfer_data.destination"] }),
   ]);
 
   // Mapa accountId → nombre del negocio
@@ -103,8 +103,9 @@ async function getDashboardData() {
   );
 
   // PaymentIntents incompletos (nunca llegaron a crear un charge)
+  const PENDING_STATUSES = ["requires_payment_method", "requires_action", "requires_confirmation", "processing"];
   const incompletePIs = paymentIntents.data.filter(
-    (pi) => pi.status !== "succeeded" && !transferredPIIds.has(pi.id),
+    (pi) => PENDING_STATUSES.includes(pi.status) && !transferredPIIds.has(pi.id),
   );
 
   return {
@@ -312,17 +313,23 @@ export default async function AdminPage() {
                   status: isRefunded ? "refunded" : "succeeded",
                 } as const;
               }),
-              ...incompletePIs.map((pi) => ({
-                id: pi.id,
-                amount: 0,
-                currency: pi.currency,
-                destId: "",
-                destName: "—",
-                created: pi.created,
-                totalAmount: pi.amount,
-                feeAmount: 0,
-                status: "incomplete" as const,
-              })),
+              ...incompletePIs.map((pi) => {
+                const destId =
+                  typeof (pi as any).transfer_data?.destination === "string"
+                    ? (pi as any).transfer_data.destination
+                    : (pi as any).transfer_data?.destination?.id ?? "";
+                return {
+                  id: pi.id,
+                  amount: 0,
+                  currency: pi.currency,
+                  destId,
+                  destName: destId ? (accountNames[destId] || destId) : "—",
+                  created: pi.created,
+                  totalAmount: pi.amount,
+                  feeAmount: 0,
+                  status: "incomplete" as const,
+                };
+              }),
             ]}
           />
         </div>
